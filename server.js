@@ -9,8 +9,7 @@ app.get("/", function (request, response) {
 });
 app.use("api/imagesearch/", function(req, res){
   console.log("HEY");
-  res.send("hola");
-  
+  res.send("hola"); 
 });
 
 var listener = app.listen(process.env.PORT, function () {
