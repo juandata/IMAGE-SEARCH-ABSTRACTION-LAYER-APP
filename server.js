@@ -17,7 +17,11 @@ app.use("/api/imagesearch/", function(req, res, next){
   };
 for(var i=0; i < respinJson.items.length; i ++){
   //console.log(respinJson.items[i].link, respinJson.items[i].snippet, respinJson.items[i].pagemap.metatags[0].cse_thumbnail[0].src);
+  /*if(respinJson.items[i].pagemap.metatags[0].length != 3){
+      console.log("not equal to 3");
+       }*/
 }
+    console.log(respinJson.items[0].pagemap.length);
   res.json(respinJson); 
 });
 });
