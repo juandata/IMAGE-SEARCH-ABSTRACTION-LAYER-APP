@@ -1,8 +1,11 @@
+header {
+  text-align: center;
+}
+
 .logoPrincipal {
     width: 100px;
     height: 100px;
-    margin: 1em;
-    margin-left: 3em;
+    margin: auto;
 }
 .wrapper {
     position: relative;
