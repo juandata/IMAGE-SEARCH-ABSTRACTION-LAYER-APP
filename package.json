@@ -8,9 +8,8 @@
   },
   "dependencies": {
     "express": "^4.16.3",
-    "mongodb": "^3.0.7"
-
-    
+    "mongodb": "^3.0.7",
+    "request": "^2.85.0"
   },
   "engines": {
     "node": "8.x"
