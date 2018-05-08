@@ -4,10 +4,11 @@ Image Search Abstraction Layer App
 A `full stack` JavaScript app that allows you to search for images.
 
 **Description**:
-This is one of the 10 FreeCodeCamp challenges designed to get the FCC backend certification. You can check the specific requirements here: https://www.freecodecamp.org/challenges/url-shortener-microservice
+This is one of the 10 FreeCodeCamp challenges designed to get the FCC backend certification. You can check the specific requirements here: [https://www.freecodecamp.org/challenges/image-search-abstraction-layer](https://www.freecodecamp.org/challenges/image-search-abstraction-layer)
 
 This microservices is a `full stack` JavaScript App that allows you to search for images, change the pagination of the responses and check the query history. 
 
+**Use Sample**:
 Find out more [about Glitch](https://glitch.com/about).
 
 
@@ -26,5 +27,3 @@ On the back-end,
 
 Made by [Juan David Tabares Arce](https://juandavidarce.co/)
 -------------------
-
-\ ゜o゜)ノ
