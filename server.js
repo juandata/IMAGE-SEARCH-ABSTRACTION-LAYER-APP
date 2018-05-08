@@ -8,7 +8,11 @@ app.get("/", function (req, res) {
 });
 app.use("/api/imagesearch/", function(req, res){
   res.send("hola"); 
+  var theUrl = "https://www.googleapis.com/customsearch/v1?key=" + key=process.env.KEY +  "&cx=" + process.env.CX + "&q=lectures"
+  console.log(req.url.split('/')[1]);
   
+  //https://www.googleapis.com/customsearch/v1?key=process.env.KEY&cx=process.env.CX&q=lectures
+
 });
 
 var listener = app.listen(process.env.PORT, function () {
