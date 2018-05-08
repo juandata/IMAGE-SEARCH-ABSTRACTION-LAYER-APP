@@ -15,9 +15,9 @@ app.use("/api/imagesearch/", function(req, res, next){
   var respinJson = JSON.parse(body);
   var respList = {
   };
-
-  console.log(respinJson.items.length);
-
+for(var i=0; i < respinJson.items.length; i ++){
+  //console.log(respinJson.items[i].link, respinJson.items[i].snippet, respinJson.items[i].pagemap.metatags[0].cse_thumbnail[0].src);
+}
   res.json(respinJson); 
 });
 });
