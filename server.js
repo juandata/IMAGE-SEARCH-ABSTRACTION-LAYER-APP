@@ -4,12 +4,11 @@ debugger;
 app.use(express.static('public'));
 
 app.get("/", function (req, res) {
-    console.log("HEY");
   res.sendFile(__dirname + '/views/index.html');
 });
-app.use("api/imagesearch/", function(req, res){
-  console.log("HEY");
+app.use("/api/imagesearch/", function(req, res){
   res.send("hola"); 
+  
 });
 
 var listener = app.listen(process.env.PORT, function () {
