@@ -1,9 +1,12 @@
-Welcome to Glitch
+Image Search Abstraction Layer App
 =================
 
-Click `Show` in the header to see your app live. Updates to your code will instantly deploy and update live.
+A `full stack` JavaScript app that allows you to search for images.
 
-**Glitch** is the friendly community where you'll build the app of your dreams. Glitch lets you instantly create, remix, edit, and host an app, bot or site, and you can invite collaborators or helpers to simultaneously edit code with you.
+**Description**:
+This is one of the 10 FreeCodeCamp challenges designed to get the FCC backend certification. You can check the specific requirements here: https://www.freecodecamp.org/challenges/url-shortener-microservice
+
+This microservices is a `full stack` JavaScript App that allows you to search for images, change the pagination of the responses and check the query history. 
 
 Find out more [about Glitch](https://glitch.com/about).
 
@@ -21,7 +24,7 @@ On the back-end,
 - safely store app secrets in `.env` (nobody can see this but you and people you invite)
 
 
-Made by [Fog Creek](https://fogcreek.com/)
+Made by [Juan David Tabares Arce](https://juandavidarce.co/)
 -------------------
 
 \ ゜o゜)ノ
