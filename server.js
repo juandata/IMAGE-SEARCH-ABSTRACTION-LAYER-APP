@@ -7,6 +7,7 @@ app.get("/", function (request, response) {
   response.sendFile(__dirname + '/views/index.html');
 });
 app.use('api/imagesearch/', function(req, res){
+  res.send("hola");
   
 });
 
