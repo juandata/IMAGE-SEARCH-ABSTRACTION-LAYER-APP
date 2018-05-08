@@ -7,11 +7,10 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 app.use("/api/imagesearch/", function(req, res){
-  res.send("hola"); 
-  var theUrl = "https://www.googleapis.com/customsearch/v1?key=" + key=process.env.KEY +  "&cx=" + process.env.CX + "&q=lectures"
-  console.log(req.url.split('/')[1]);
+  var key = process.env.KEY, cx = process.env.CX,theUrl = 'https://www.googleapis.com/customsearch/v1?key=' + key + "&cx=" + cx,theQuery = req.url.split('/')[1];
+  res.send(theUrl + theQuery); 
   
-  //https://www.googleapis.com/customsearch/v1?key=process.env.KEY&cx=process.env.CX&q=lectures
+  //https://www.googleapis.com/customsearch/v1?key=process.env.KEY&cx=&q=lectures
 
 });
 
