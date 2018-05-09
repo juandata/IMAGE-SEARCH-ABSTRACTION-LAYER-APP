@@ -20,8 +20,15 @@ for(var i=0; i < respinJson.items.length; i ++){
   /*if(respinJson.items[i].pagemap.metatags[0].length != 3){
       console.log("not equal to 3");
        }*/
+  if(respinJson.items[i].pagemap.cse_thumbnail[0].src === "undefined"){
+      console.log("no existe la propiedad en la respuesta");
+     }
+  else  {
+  }
+  
+  console.log();
 }
-    console.log(respinJson.items[0].pagemap.cse_image[0].src);
+    
   res.json(respinJson); 
 });
 });
