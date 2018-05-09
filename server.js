@@ -66,14 +66,9 @@ app.get("/api/latest/imagesearch/", function(req, res){
       console.log('Connection established to mlab.com');
       // do some work here with the database.
       var dbo = db.db("urlshortened");
-      dbo.collection('imageSearchHistory').find({}).next(function(err, doc) {
-        if (!doc) {
-          res.send("could not find documents in the database, sorry!");
-        } else {
-          console.log("Showing");
-          res.json(doc);
-        }
-      });;
+      //var z = dbo.collection('imageSearchHistory').find();
+      //console.log(z);
+      res.send("n");
       //Close connection
       db.close();
       //});
