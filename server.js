@@ -12,11 +12,11 @@ app.get("/", function (req, res) {
 });
 app.use("/api/imagesearch/", function(req, res, next){
   theQuery = req.url.split('/')[1];
-  console.log(res);
   var theFinalQuery = theQuery.split('?')[0];
   var term = decodeURI(theFinalQuery);
   var date = new Date();
   var dateReadable = date.toDateString();
+  var hour = date.getUTCHours() + ":" + date.getUTCMinutes() + ":" + date.getUTCSeconds();
   var start = theQuery.split('?')[1].split('=')[1];
   key = process.env.KEY, cx = process.env.CX,theUrl = 'https://www.googleapis.com/customsearch/v1?key=' + key + 
   "&cx=" + cx + "&searchType=image" + "&start=" + start + "&q=",
@@ -28,7 +28,7 @@ app.use("/api/imagesearch/", function(req, res, next){
   };
   var historyLog = {
     "term": term,
-    "when": dateReadable
+    "when": dateReadable + " at: " + hour
   };
 for(var i=0; i < respinJson.items.length; i ++){
   respList[i].url = respinJson.items[i].link;
@@ -47,7 +47,7 @@ for(var i=0; i < respinJson.items.length; i ++){
       var dbo = db.db("urlshortened");
       dbo.collection('imageSearchHistory').insert(historyLog, function(err, ok){
         if (err) throw err;
-        if (ok) console.log("document inserted ok");
+        if (ok) console.log("document inserted ok");}
       });
       //Close connection
       db.close();
