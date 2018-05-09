@@ -29,6 +29,9 @@ for(var i=0; i < respinJson.items.length; i ++){
     res.json(respList);
 });
 });
+app.get("/api/latest/imagesearch/", function(req, res){
+  res.send("latest search is");
+});
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 }); 
