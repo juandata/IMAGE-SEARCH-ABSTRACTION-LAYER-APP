@@ -14,21 +14,24 @@ app.use("/api/imagesearch/", function(req, res, next){
   request(theUrl + theQuery, function(error, response, body) {
   var respinJson = JSON.parse(body);
   var respList = {
+    0 
   };
 for(var i=0; i < respinJson.items.length; i ++){
   //console.log(respinJson.items[i].link, respinJson.items[i].snippet, respinJson.items[i].pagemap.metatags[0].cse_thumbnail[0].src);
   /*if(respinJson.items[i].pagemap.metatags[0].length != 3){
       console.log("not equal to 3");
        }*/
-  if(respinJson.items[i].pagemap.cse_thumbnail[0].src === "undefined"){
+    respList[i].url = respinJson.items[0].pagemap.cse_image[0].src;
+    
+  if( respinJson.items[i].pagemap.cse_thumbnail === undefined){
       console.log("no existe la propiedad en la respuesta");
      }
-  else  {
+  else {
+    //console.log(respinJson.items[i].pagemap.cse_thumbnail[0].src);
+      //console.log(rtypeofespinJson.items[i].pagemap.cse_thumbnail[0].src);
   }
-  
-  console.log();
 }
-    
+    console.log(respList);
   res.json(respinJson); 
 });
 });
