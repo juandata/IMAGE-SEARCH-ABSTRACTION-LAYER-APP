@@ -47,7 +47,8 @@ for(var i=0; i < respinJson.items.length; i ++){
       var dbo = db.db("urlshortened");
       dbo.collection('imageSearchHistory').insert(historyLog, function(err, ok){
         if (err) throw err;
-        if (ok) console.log("document inserted ok");}
+        if (ok) console.log("document inserted ok")
+        console.log(historyLog);
       });
       //Close connection
       db.close();
@@ -57,8 +58,27 @@ for(var i=0; i < respinJson.items.length; i ++){
 });
 });
 app.get("/api/latest/imagesearch/", function(req, res){
-  res.send("latest search is");
-    
+   MongoClient.connect(address, function(err, db) {
+    //(Focus on This Variable)
+    if (err) {
+      console.log('Unable to connect to the mongoDB server. Error:', err);
+    } else {
+      console.log('Connection established to mlab.com');
+      // do some work here with the database.
+      var dbo = db.db("urlshortened");
+      dbo.collection('imageSearchHistory').find({}).next(function(err, doc) {
+        if (!doc) {
+          res.send("could not find documents in the database, sorry!");
+        } else {
+          console.log("Showing");
+          res.json(doc);
+        }
+      });;
+      //Close connection
+      db.close();
+      //});
+    }
+  });  
   
 });
 var listener = app.listen(process.env.PORT, function () {
