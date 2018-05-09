@@ -4,7 +4,7 @@ var request = require("request");
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 var key, cx, theUrl, theQuery;
-debugger;
+var address = process.env.SECRET;
 app.use(express.static('public'));
 
 app.get("/", function (req, res) {
@@ -29,10 +29,6 @@ for(var i=0; i < respinJson.items.length; i ++){
   respList[i].context = respinJson.items[0].image.contextLink;
 } //console.log(respList);  
     res.json(respList);
-});
-});
-app.get("/api/latest/imagesearch/", function(req, res){
-  res.send("latest search is");
     MongoClient.connect(address, function(err, db) {
     //(Focus on This Variable)
     if (err) {
@@ -41,21 +37,19 @@ app.get("/api/latest/imagesearch/", function(req, res){
       console.log('Connection established to mlab.com');
       // do some work here with the database.
       var dbo = db.db("urlshortened");
-      dbo.collection('urls').find({
-        short_url: fullUrl
-      }).limit(1).next(function(err, doc) {
-        if (!doc) {
-          response.send("the url does not exist in the database, try again with a correct number");
-        } else {
-          console.log("redirecting...");
-          response.redirect(doc.original_url);
-        }
+      dbo.collection('imageSearchHistory').insert(respList, function(err, ok){
+        if
       });
       //Close connection
       db.close();
       //});
     }
   });
+});
+});
+app.get("/api/latest/imagesearch/", function(req, res){
+  res.send("latest search is");
+    
   
 });
 var listener = app.listen(process.env.PORT, function () {
