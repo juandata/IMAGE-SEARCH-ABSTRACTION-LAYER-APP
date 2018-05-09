@@ -1,6 +1,8 @@
 var express = require('express');
 var app = express();
 var request = require("request");
+var mongodb = require('mongodb');
+var MongoClient = mongodb.MongoClient;
 var key, cx, theUrl, theQuery;
 debugger;
 app.use(express.static('public'));
@@ -31,6 +33,30 @@ for(var i=0; i < respinJson.items.length; i ++){
 });
 app.get("/api/latest/imagesearch/", function(req, res){
   res.send("latest search is");
+    MongoClient.connect(address, function(err, db) {
+    //(Focus on This Variable)
+    if (err) {
+      console.log('Unable to connect to the mongoDB server. Error:', err);
+    } else {
+      console.log('Connection established to mlab.com');
+      // do some work here with the database.
+      var dbo = db.db("urlshortened");
+      dbo.collection('urls').find({
+        short_url: fullUrl
+      }).limit(1).next(function(err, doc) {
+        if (!doc) {
+          response.send("the url does not exist in the database, try again with a correct number");
+        } else {
+          console.log("redirecting...");
+          response.redirect(doc.original_url);
+        }
+      });
+      //Close connection
+      db.close();
+      //});
+    }
+  });
+  
 });
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
