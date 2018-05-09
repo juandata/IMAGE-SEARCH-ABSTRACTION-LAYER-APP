@@ -14,7 +14,7 @@ app.use("/api/imagesearch/", function(req, res, next){
   request(theUrl + theQuery, function(error, response, body) {
   var respinJson = JSON.parse(body);
   var respList = {
-  0: {}, 1: {}
+  0: {}, 1: {}, 2: {}, 3: {}, 4: {}, 5: {}, 6: {}, 7: {}, 8: {}, 9: {}, 
   };
       res.json(respinJson); 
 for(var i=0; i < respinJson.items.length; i ++){
@@ -24,9 +24,12 @@ for(var i=0; i < respinJson.items.length; i ++){
        }*/
     //console.log(respinJson.items[i].link);
   respList[i].url = respinJson.items[i].link;
-  console.log(respList);  
+  respList[i].snippet = respinJson.items[i].snippet;
+  respList[i].thumbnail = respinJson.items[0].image.thumbnailLink;
+  respList[i].context = respinJson.items[0].image.contextLink;
 
-}
+
+} console.log(respList);  
 });
 });
 var listener = app.listen(process.env.PORT, function () {
