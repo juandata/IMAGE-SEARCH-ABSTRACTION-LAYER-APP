@@ -10,7 +10,7 @@ app.use(express.static('public'));
 app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
-app.use("/api/imagesearch/", function(req, res, next){
+app.use("/api/imagesearch/", function(req, res){
   theQuery = req.url.split('/')[1];
   var theFinalQuery = theQuery.split('?')[0];
   var term = decodeURI(theFinalQuery);
@@ -56,6 +56,7 @@ for(var i=0; i < respinJson.items.length; i ++){
     }
   });
 });
+  //res.end();
 });
 app.get("/api/latest/imagesearch/", function(req, res){
   var latestSearch = {
@@ -71,9 +72,13 @@ app.get("/api/latest/imagesearch/", function(req, res){
       var dbo = db.db("urlshortened");
       //var z = dbo.collection('imageSearchHistory').find();
       //console.log(z);
-      res.send("n");
     dbo.collection("imageSearchHistory").find().limit(10).project({_id : 0}).toArray(function(err, result){
       console.log(result.length);
+      for(var i =0; i < result.length; i ++){
+        latestSearch[i].term = result[i].term;
+        latestSearch[i].when = result[i].when;
+      }
+       res.json(latestSearch);
     //console.log(JSON.stringify(result));
     //db.close();
   });
