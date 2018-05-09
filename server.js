@@ -69,8 +69,7 @@ app.get("/api/latest/imagesearch/", function(req, res){
       //var z = dbo.collection('imageSearchHistory').find();
       //console.log(z);
       res.send("n");
-    dbo.collection("imageSearchHistory").find({}).toArray(function(err, result){
-    if (err) throw err;
+    dbo.collection("imageSearchHistory").find({}, {_id: 0} ).toArray(function(err, result){
     console.log(result);
     //db.close();
   });
