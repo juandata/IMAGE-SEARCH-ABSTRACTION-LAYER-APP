@@ -16,6 +16,8 @@ app.use("/api/imagesearch/", function(req, res, next){
   var respList = {
     0 : ""
   };
+      res.json(respinJson); 
+
 for(var i=0; i < respinJson.items.length; i ++){
   //console.log(respinJson.items[i].link, respinJson.items[i].snippet, respinJson.items[i].pagemap.metatags[0].cse_thumbnail[0].src);
   /*if(respinJson.items[i].pagemap.metatags[0].length != 3){
@@ -31,8 +33,6 @@ for(var i=0; i < respinJson.items.length; i ++){
       //console.log(rtypeofespinJson.items[i].pagemap.cse_thumbnail[0].src);
   }
 }
-    console.log(respList);
-  res.json(respinJson); 
 });
 });
 var listener = app.listen(process.env.PORT, function () {
