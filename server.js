@@ -13,6 +13,7 @@ app.get("/", function (req, res) {
 app.use("/api/imagesearch/", function(req, res, next){
   theQuery = req.url.split('/')[1];
   var theFinalQuery = theQuery.split('?')[0];
+  var term = decodeURI(theFinalQuery);
   var start = theQuery.split('?')[1].split('=')[1];
   key = process.env.KEY, cx = process.env.CX,theUrl = 'https://www.googleapis.com/customsearch/v1?key=' + key + 
   "&cx=" + cx + "&searchType=image" + "&start=" + start + "&q=",
@@ -29,7 +30,7 @@ for(var i=0; i < respinJson.items.length; i ++){
   respList[i].context = respinJson.items[0].image.contextLink;
 } //console.log(respList);  
     res.json(respList);
-    MongoClient.connect(address, function(err, db) {
+    /*MongoClient.connect(address, function(err, db) {
     //(Focus on This Variable)
     if (err) {
       console.log('Unable to connect to the mongoDB server. Error:', err);
@@ -38,13 +39,14 @@ for(var i=0; i < respinJson.items.length; i ++){
       // do some work here with the database.
       var dbo = db.db("urlshortened");
       dbo.collection('imageSearchHistory').insert(respList, function(err, ok){
-        if
+        if (err) throw err;
+        if (ok) console.log("document inserted ok");
       });
       //Close connection
       db.close();
       //});
     }
-  });
+  });*/
 });
 });
 app.get("/api/latest/imagesearch/", function(req, res){
