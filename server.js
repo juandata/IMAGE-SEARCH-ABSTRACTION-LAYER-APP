@@ -58,6 +58,9 @@ for(var i=0; i < respinJson.items.length; i ++){
 });
 });
 app.get("/api/latest/imagesearch/", function(req, res){
+  var latestSearch = {
+  0: {}, 1: {}, 2: {}, 3: {}, 4: {}, 5: {}, 6: {}, 7: {}, 8: {}, 9: {}, 
+  };
    MongoClient.connect(address, function(err, db) {
     //(Focus on This Variable)
     if (err) {
@@ -69,8 +72,9 @@ app.get("/api/latest/imagesearch/", function(req, res){
       //var z = dbo.collection('imageSearchHistory').find();
       //console.log(z);
       res.send("n");
-    dbo.collection("imageSearchHistory").find({}, {_id: 0} ).toArray(function(err, result){
-    console.log(result);
+    dbo.collection("imageSearchHistory").find().limit(10).project({_id : 0}).toArray(function(err, result){
+      console.log(result.length);
+    //console.log(JSON.stringify(result));
     //db.close();
   });
       //Close connection
