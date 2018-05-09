@@ -9,9 +9,13 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 app.use("/api/imagesearch/", function(req, res, next){
-   key = process.env.KEY, cx = process.env.CX,theUrl = 'https://www.googleapis.com/customsearch/v1?key=' + key + "&cx=" + cx + "&searchType=image&q=",
   theQuery = req.url.split('/')[1];
-  request(theUrl + theQuery, function(error, response, body) {
+  var theFinalQuery = theQuery.split('&')[0];
+  var start = theQuery.split('&')[1].split('=')[1];
+  console.log(start, theFinalQuery);
+  key = process.env.KEY, cx = process.env.CX,theUrl = 'https://www.googleapis.com/customsearch/v1?key=' + key + 
+  "&cx=" + cx + "&searchType=image" + "start=" + start + "&q=",
+  request(theUrl + theFinalQuery, function(error, response, body) {
   var respinJson = JSON.parse(body);
   var respList = {
   0: {}, 1: {}, 2: {}, 3: {}, 4: {}, 5: {}, 6: {}, 7: {}, 8: {}, 9: {}, 
@@ -29,7 +33,7 @@ for(var i=0; i < respinJson.items.length; i ++){
   respList[i].context = respinJson.items[0].image.contextLink;
 
 
-} console.log(respList);  
+} //console.log(respList);  
 });
 });
 var listener = app.listen(process.env.PORT, function () {
