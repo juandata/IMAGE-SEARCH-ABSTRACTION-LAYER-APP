@@ -21,7 +21,12 @@ app.use("/api/imagesearch/", function(req, res){
   key = process.env.KEY, cx = process.env.CX,theUrl = 'https://www.googleapis.com/customsearch/v1?key=' + key + 
   "&cx=" + cx + "&searchType=image" + "&start=" + start + "&q=",
   request(theUrl + theFinalQuery, function(error, response, body) {
-  var respinJson = JSON.parse(body);
+    if(error) throw error;
+    var respinJson = JSON.parse(body);
+    if(respinJson.error.code === 403){
+      res.send(respinJson.error);
+      res.end();
+    }
     //res.send(respinJson);
   var respList = {
   0: {}, 1: {}, 2: {}, 3: {}, 4: {}, 5: {}, 6: {}, 7: {}, 8: {}, 9: {}, 
