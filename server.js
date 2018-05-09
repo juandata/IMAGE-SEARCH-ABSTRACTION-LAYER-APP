@@ -21,7 +21,7 @@ for(var i=0; i < respinJson.items.length; i ++){
       console.log("not equal to 3");
        }*/
 }
-    console.log(respinJson.items[0].pagemap.length);
+    console.log(respinJson.items[0].pagemap.cse_image[0].src);
   res.json(respinJson); 
 });
 });
