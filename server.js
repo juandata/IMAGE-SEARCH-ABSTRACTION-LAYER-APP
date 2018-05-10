@@ -23,11 +23,6 @@ app.use("/api/imagesearch/", function(req, res){
   request(theUrl + theFinalQuery, function(error, response, body) {
     if (error) throw error;
     var respinJson = JSON.parse(body);
-    /*if(respinJson.error.code === 403){
-      res.send(respinJson.error);
-      res.end();
-    }*/
-    //res.send(respinJson);
   var respList = {
   0: {}, 1: {}, 2: {}, 3: {}, 4: {}, 5: {}, 6: {}, 7: {}, 8: {}, 9: {}, 
   };
@@ -40,10 +35,9 @@ for(var i=0; i < respinJson.items.length; i ++){
   respList[i].snippet = respinJson.items[i].snippet;
   respList[i].thumbnail = respinJson.items[0].image.thumbnailLink;
   respList[i].context = respinJson.items[0].image.contextLink;
-} //console.log(respList);  
+} 
     res.json(respList);
     MongoClient.connect(address, function(err, db) {
-    //(Focus on This Variable)
     if (err) {
       console.log('Unable to connect to the mongoDB server. Error:', err);
     } else {
@@ -55,29 +49,23 @@ for(var i=0; i < respinJson.items.length; i ++){
         if (ok) console.log("document inserted ok")
         console.log(historyLog);
       });
-      //Close connection
       db.close();
-      //});
     }
   });
   
 });
-  //res.end();
 });
 app.get("/api/latest/imagesearch/", function(req, res){
   var latestSearch = {
   0: {}, 1: {}, 2: {}, 3: {}, 4: {}, 5: {}, 6: {}, 7: {}, 8: {}, 9: {}, 
   };
    MongoClient.connect(address, function(err, db) {
-    //(Focus on This Variable)
     if (err) {
       console.log('Unable to connect to the mongoDB server. Error:', err);
     } else {
       console.log('Connection established to mlab.com');
       // do some work here with the database.
       var dbo = db.db("urlshortened");
-      //var z = dbo.collection('imageSearchHistory').find();
-      //console.log(z);
     dbo.collection("imageSearchHistory").find().limit(10).sort({_id : -1}).project({_id : 0}).toArray(function(err, result){
       console.log(result.length);
       for(var i =0; i < result.length; i ++){
@@ -85,12 +73,8 @@ app.get("/api/latest/imagesearch/", function(req, res){
         latestSearch[i].when = result[i].when;
       }
        res.json(latestSearch);
-    //console.log(JSON.stringify(result));
-    //db.close();
   });
-      //Close connection
       db.close();
-      //});
     }
   });  
   
@@ -98,3 +82,4 @@ app.get("/api/latest/imagesearch/", function(req, res){
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 }); 
+ 

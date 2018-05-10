@@ -25,11 +25,14 @@ Example Creation Usage
 Hint,
 - At the end of your query add **?offset='x'** where **X** is the page number to be retrieved by the API 
 
- **Get last 10 queries **
+ **Get last 10 queries**
  
- [
+ [https://image-search-abstraction-layer-app.glitch.me/api/latest/imagesearch/](https://image-search-abstraction-layer-app.glitch.me/api/latest/imagesearch/)
 - 10 Json Objects containing the image url, snippet, thumbnail and context info of your query. 
 
+ **Response**
+ - The last 10 queries made to the API. 
 
+ ------------
 Made by [Juan David Tabares Arce](https://juandavidarce.co/)
 -------------------
