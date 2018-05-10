@@ -8,21 +8,27 @@ This is one of the 10 FreeCodeCamp challenges designed to get the FCC backend ce
 
 This microservices is a `full stack` JavaScript App that allows you to search for images, change the pagination of the responses and check the query history. 
 
-**Use Sample**:
-Find out more [about Glitch](https://glitch.com/about).
+**User Stories**:
+ - I can get the image URLs, alt text and page urls for a set of images relating to a given search string.
+ - I can paginate through the responses by adding a ?offset=2 parameter to the URL.
+ - I can get a list of the most recently submitted search strings.
 
-
-Your Project
+Example Creation Usage 
 ------------
 
-On the front-end,
-- edit `public/client.js`, `public/style.css` and `views/index.html`
-- drag in `assets`, like images or music, to add them to your project
+ **Search an image with a query:**
+ 
+ [https://image-search-abstraction-layer-app.glitch.me/api/imagesearch/say%20it%20again%20meme?offset=1](https://image-search-abstraction-layer-app.glitch.me/api/imagesearch/say%20it%20again%20meme?offset=1)
 
-On the back-end,
-- your app starts at `server.js`
-- add frameworks and packages in `package.json`
-- safely store app secrets in `.env` (nobody can see this but you and people you invite)
+ **Response**
+- 10 Json Objects containing the image url, snippet, thumbnail and context info of your query. 
+Hint,
+- At the end of your query add **?offset='x'** where **X** is the page number to be retrieved by the API 
+
+ **Get last 10 queries **
+ 
+ [
+- 10 Json Objects containing the image url, snippet, thumbnail and context info of your query. 
 
 
 Made by [Juan David Tabares Arce](https://juandavidarce.co/)
