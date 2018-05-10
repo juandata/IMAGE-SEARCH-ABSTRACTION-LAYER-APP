@@ -78,7 +78,7 @@ app.get("/api/latest/imagesearch/", function(req, res){
       var dbo = db.db("urlshortened");
       //var z = dbo.collection('imageSearchHistory').find();
       //console.log(z);
-    dbo.collection("imageSearchHistory").find().limit(10).project({_id : 0}).toArray(function(err, result){
+    dbo.collection("imageSearchHistory").find().limit(10).sort({_id : -1}).project({_id : 0}).toArray(function(err, result){
       console.log(result.length);
       for(var i =0; i < result.length; i ++){
         latestSearch[i].term = result[i].term;
